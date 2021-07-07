@@ -1,0 +1,51 @@
+{
+  "name": "pollen-solutions/container",
+    "description": "Pollen Container Component - Dependencies Injection Container.",
+  "homepage": "https://www.presstify.com/pollen-solutions/container/",
+  "keywords": [
+    "pollen-solutions",
+    "component",
+    "container",
+    "PSR-11"
+  ],
+  "time": "2021-06-24",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jordy Manner",
+      "email": "jordy@presstify.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://composer.presstify.com/pollen-solutions/"
+    }
+  ],
+  "require": {
+    "php": "^7.0 || ^8.0",
+    "league/container": "^3.3",
+    "psr/container": "^1.0.0 || ^2.0.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.0",
+    "roave/security-advisories": "dev-latest"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pollen\\Container\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Pollen\\Container\\Test\\": "tests"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  }
+}
