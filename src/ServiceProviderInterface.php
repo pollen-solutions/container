@@ -9,7 +9,7 @@ use League\Container\ServiceProvider\ServiceProviderInterface as BaseBaseService
 interface ServiceProviderInterface extends BaseBaseServiceProviderInterface
 {
     /**
-     * Déclaration de services.
+     * Register services.
      *
      * @return void
      */
