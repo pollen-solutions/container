@@ -7,7 +7,7 @@ namespace Pollen\Container;
 interface BootableServiceProviderInterface extends ServiceProviderInterface
 {
     /**
-     * Initialisation du fournisseur de service.
+     * Booting.
      *
      * @return void
      */
