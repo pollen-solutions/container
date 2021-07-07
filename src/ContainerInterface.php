@@ -12,7 +12,7 @@ use Psr\Container\ContainerInterface as PsrContainer;
 interface ContainerInterface extends PsrContainer
 {
     /**
-     * Activation de l'auto wring
+     * Enabling auto-wiring.
      *
      * @param bool $cached
      *
