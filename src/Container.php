@@ -41,7 +41,7 @@ class Container extends BaseContainer implements ArrayAccess, ContainerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function has($id) : bool
     {
@@ -93,7 +93,7 @@ class Container extends BaseContainer implements ArrayAccess, ContainerInterface
     }
 
     /**
-     * Récupération dynamique d'un service.
+     * Get service dynamically.
      *
      * @param string $key
      *
@@ -105,7 +105,7 @@ class Container extends BaseContainer implements ArrayAccess, ContainerInterface
     }
 
     /**
-     * Définition dynamique d'un service.
+     * Set service dynamically.
      *
      * @param string $key
      * @param mixed $value
@@ -118,7 +118,7 @@ class Container extends BaseContainer implements ArrayAccess, ContainerInterface
     }
 
     /**
-     * Vérification dynamique d'existence d'un service.
+     * Check if dynamic service exists.
      *
      * @param string $key
      *

@@ -8,7 +8,7 @@
     "container",
     "PSR-11"
   ],
-  "time": "2021-06-24",
+  "time": "2021-07-07",
   "license": "MIT",
   "authors": [
     {
@@ -23,7 +23,7 @@
     }
   ],
   "require": {
-    "php": "^7.0 || ^8.0",
+    "php": "^7.4 || ^8.0",
     "league/container": "^3.3",
     "psr/container": "^1.0.0 || ^2.0.0"
   },
