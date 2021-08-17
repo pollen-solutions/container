@@ -1,10 +1,10 @@
 # Container Component
 
-[![Latest Version](https://img.shields.io/badge/release-1.0.2-blue?style=for-the-badge)](https://www.presstify.com/pollen-solutions/container/)
+[![Latest Stable Version](https://img.shields.io/packagist/v/pollen-solutions/container.svg?style=for-the-badge)](https://packagist.org/packages/pollen-solutions/container)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE.md)
 [![PHP Supported Versions](https://img.shields.io/badge/PHP->=7.4-8892BF?style=for-the-badge&logo=php)](https://www.php.net/supported-versions.php)
 
-Pollen Solutions **Container** Component is a PSR-7 ready Dependencies Injection Container.
+Pollen Solutions **Container** Component is a PSR-11 ready Dependencies Injection Container.
 
 ## Installation
 
