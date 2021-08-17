@@ -1,6 +1,6 @@
 {
   "name": "pollen-solutions/container",
-    "description": "Pollen Container Component - Dependencies Injection Container.",
+  "description": "Pollen Solutions - Container Component - PSR-11 ready Dependencies Injection Container.",
   "homepage": "https://www.presstify.com/pollen-solutions/container/",
   "keywords": [
     "pollen-solutions",
@@ -8,7 +8,7 @@
     "container",
     "PSR-11"
   ],
-  "time": "2021-07-07",
+  "time": "2021-08-17",
   "license": "MIT",
   "authors": [
     {
