@@ -16,18 +16,39 @@ class Container extends BaseContainer implements ArrayAccess, ContainerInterface
      */
     protected array $aliases = [];
 
+    protected bool $providersBooted = false;
+
     /**
      * @inheritDoc
      */
-    public function enableAutoWiring(bool $cached = false): ContainerInterface
+    public function addAlias(string $definitionAlias, string $altAlias): ContainerInterface
     {
-        $reflectionContainer = new ReflectionContainer();
+        $this->aliases[$altAlias] = $definitionAlias;
 
-        if ($cached === true) {
-            $reflectionContainer->cacheResolutions();
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function bootProviders(): void
+    {
+        if (!$this->providersBooted) {
+            foreach ($this->providers as $provider) {
+                if ($provider instanceof BootableServiceProviderInterface) {
+                    $provider->boot();
+                }
+            }
+            $this->providersBooted = true;
         }
-
-        return $this->delegate($reflectionContainer);
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function enableAutoWiring(bool $cached = false): void
+    {
+        $this->delegate(new ReflectionContainer());
     }
 
     /**
@@ -35,9 +56,15 @@ class Container extends BaseContainer implements ArrayAccess, ContainerInterface
      */
     public function get($id, bool $new = false)
     {
-        $id = $this->aliases[$id] ?? $id;
+        return parent::get($this->aliases[$id] ?? $id);
+    }
 
-        return parent::get($id, $new);
+    /**
+     * @inheritDoc
+     */
+    public function getNew($id)
+    {
+        return parent::get($this->aliases[$id] ?? $id, true);
     }
 
     /**
@@ -45,9 +72,7 @@ class Container extends BaseContainer implements ArrayAccess, ContainerInterface
      */
     public function has($id) : bool
     {
-        $id = $this->aliases[$id] ?? $id;
-
-        return parent::has($id);
+        return parent::has($this->aliases[$id] ?? $id);
     }
 
     /**
