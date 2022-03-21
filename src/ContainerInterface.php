@@ -12,11 +12,26 @@ use Psr\Container\ContainerInterface as PsrContainer;
 interface ContainerInterface extends PsrContainer
 {
     /**
+     * Add alternative alias service.
+     *
+     * @var string $definitionAlias
+     * @var string $altAlias
+     *
+     * @return static
+     */
+    public function addAlias(string $definitionAlias, string $altAlias): ContainerInterface;
+
+    /**
+     * @return void
+     */
+    public function bootProviders(): void;
+
+    /**
      * Enabling auto-wiring.
      *
      * @param bool $cached
      *
      * @return static
      */
-    public function enableAutoWiring(bool $cached = false): ContainerInterface;
+    public function enableAutoWiring(bool $cached = false):  void;
 }
