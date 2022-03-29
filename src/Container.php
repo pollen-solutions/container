@@ -8,6 +8,8 @@ use ArrayAccess;
 use Closure;
 use League\Container\Container as BaseContainer;
 use League\Container\ReflectionContainer;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class Container extends BaseContainer implements ArrayAccess, ContainerInterface
 {
@@ -48,7 +50,13 @@ class Container extends BaseContainer implements ArrayAccess, ContainerInterface
      */
     public function enableAutoWiring(bool $cached = false): void
     {
-        $this->delegate(new ReflectionContainer());
+        $reflectionContainer = new ReflectionContainer();
+
+        if ($cached === true) {
+            $reflectionContainer->cacheResolutions();
+        }
+
+        $this->delegate($reflectionContainer);
     }
 
     /**
@@ -62,7 +70,7 @@ class Container extends BaseContainer implements ArrayAccess, ContainerInterface
     /**
      * @inheritDoc
      */
-    public function getNew($id)
+    public function getNew(string $id)
     {
         return parent::get($this->aliases[$id] ?? $id, true);
     }
@@ -88,7 +96,11 @@ class Container extends BaseContainer implements ArrayAccess, ContainerInterface
      */
     public function offsetGet($offset)
     {
-        return $this->get($offset);
+        try {
+            return $this->get($offset);
+        } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
+            return null;
+        }
     }
 
     /**
@@ -98,7 +110,7 @@ class Container extends BaseContainer implements ArrayAccess, ContainerInterface
     {
         $this->add(
             $offset,
-            $value instanceof Closure ? $value : function () use ($value) {
+            $value instanceof Closure ? $value : static function () use ($value) {
                 return $value;
             }
         );
