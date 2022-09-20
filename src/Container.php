@@ -7,12 +7,32 @@ namespace Pollen\Container;
 use ArrayAccess;
 use Closure;
 use League\Container\Container as BaseContainer;
+use League\Container\Definition\DefinitionAggregateInterface;
+use League\Container\Inflector\InflectorAggregateInterface;
 use League\Container\ReflectionContainer;
+use League\Container\ServiceProvider\ServiceProviderAggregateInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
 class Container extends BaseContainer implements ArrayAccess, ContainerInterface
 {
+    /**
+     * @param DefinitionAggregateInterface|null      $definitions
+     * @param ServiceProviderAggregateInterface|null $providers
+     * @param InflectorAggregateInterface|null       $inflectors
+     */
+    public function __construct(
+        DefinitionAggregateInterface      $definitions = null,
+        ServiceProviderAggregateInterface $providers = null,
+        InflectorAggregateInterface       $inflectors = null
+    ) {
+        if ($definitions === null) {
+            $definitions = new DefinitionAggregate();
+        }
+
+        parent::__construct($definitions, $providers, $inflectors);
+    }
+
     /**
      * @var array<string, <string>>
      */
