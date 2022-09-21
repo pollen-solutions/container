@@ -17,6 +17,13 @@ use Psr\Container\NotFoundExceptionInterface;
 class Container extends BaseContainer implements ArrayAccess, ContainerInterface
 {
     /**
+     * @var array<string, string>
+     */
+    protected array $aliases = [];
+
+    protected bool $providersBooted = false;
+
+    /**
      * @param DefinitionAggregateInterface|null      $definitions
      * @param ServiceProviderAggregateInterface|null $providers
      * @param InflectorAggregateInterface|null       $inflectors
@@ -34,11 +41,12 @@ class Container extends BaseContainer implements ArrayAccess, ContainerInterface
     }
 
     /**
-     * @var array<string, <string>>
+     * @inheritDoc
      */
-    protected array $aliases = [];
-
-    protected bool $providersBooted = false;
+    public function all(): DefinitionAggregateInterface
+    {
+        return $this->definitions;
+    }
 
     /**
      * @inheritDoc
