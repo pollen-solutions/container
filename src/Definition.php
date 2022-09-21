@@ -55,13 +55,13 @@ class Definition extends BaseDefinition
 
         $newInstanceParams = [];
         foreach ($params as $param) {
-            if ($this->getContainer()->has($param->getName())) {
-                $newInstanceParams[] = $this->getContainer()->get($param->getName());
+            if (($type = $param->getType()) && ($name = $type->getName()) && $this->getContainer()->has($name)) {
+                $newInstanceParams[] = $this->getContainer()->get($name);
             } else {
                 $newInstanceParams[] = $param->getClass() === null
                     ? $param->getDefaultValue()
                     : $this->reflectionResolvedArgumentsInstance($param->getClass()->getName());
-                }
+            }
         }
 
         return $reflectionClass->newInstanceArgs(

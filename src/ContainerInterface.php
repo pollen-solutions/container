@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Pollen\Container;
 
+use League\Container\Definition\DefinitionAggregateInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface as PsrContainer;
 use Psr\Container\NotFoundExceptionInterface;
@@ -13,6 +14,13 @@ use Psr\Container\NotFoundExceptionInterface;
  */
 interface ContainerInterface extends PsrContainer
 {
+    /**
+     * Get list of definitions object
+     *
+     * @return DefinitionAggregateInterface
+     */
+    public function all(): DefinitionAggregateInterface;
+
     /**
      * Add alternative alias service.
      *
